@@ -10,6 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/aos.css">
 	</head>
 	<body class="is-preload">
 
@@ -43,7 +44,9 @@
 						<h2>Recent Work</h2>
 						<div class="row">
 							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/01.jpg" class="image fit thumb"><img src="images/thumbs/BYU_CMR.jpg" alt="" /></a>
+								<a id="demo01" href="#animatedModal" class="image fit thumb">
+									<img src="images/thumbs/BYU_CMR.jpg" alt="" />
+								</a>
 								<h3>BYU CMR Master's Student</h3>
 								<p>I research strain energy storage in compliant mechanisms for use in mechanical batteries.</p>
 							</article>
@@ -449,11 +452,26 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/aos.js"></script>
+			<script src="assets/js/jquery.js"></script>
+			<script src="assets/js/plugins.js"></script>
+			<script src="assets/js/custom.js"></script>
+		
+		<!-- Modal Overlay -->
+		<div class="modal-overlay" style="display: none;"></div>
 
+		
+		<!--DEMO01-->
+		<div id="animatedModal" class="animated-modal">
+			<div class="modal-content">
+				<span class="close-animatedModal">&times;</span>
+				<h2>Here is some sample text for this page.</h2>
+				<img src="assets/images/BYU_CMR.jpg" alt="BYU CMR">
+			</div>
+		</div>
 	</body>
 </html>

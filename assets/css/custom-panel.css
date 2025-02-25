@@ -1,0 +1,221 @@
+.site-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+#header {
+  position: fixed;
+  width: 35%;
+  height: 100vh;
+  z-index: 10;
+}
+
+#main {
+  margin-left: 35%;
+  width: 65%;
+  padding: 4em 2.5em;
+}
+
+.right-side-panel {
+  position: fixed;
+  top: 0;
+  right: -65%;
+  width: 65%;
+  height: 100vh;
+  background: #fff;
+  overflow-y: auto;
+  z-index: 1000;
+  padding: 2em 8em; /* Increased from 4em to 5em */
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.right-side-panel.active {
+  right: 0;
+}
+
+.right-side-panel.active + .modal-overlay {
+  display: none; /* Remove the overlay effect completely */
+  width: 100%;
+}
+
+.panel-close {
+  position: fixed;
+  top: 20px;
+  right: 40px; /* Moved further from the scrollbar */
+  font-size: 2em; /* Match chevron size */
+  cursor: pointer;
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  color: #888;
+}
+
+.panel-close:hover {
+  color: #000;
+}
+
+.right-side-panel.active .panel-close {
+  opacity: 1;
+  visibility: visible;
+}
+
+.panel-nav {
+  position: fixed;
+  z-index: 1001;
+  opacity: 0;
+  visibility: hidden;
+  width: 100%;
+  pointer-events: none; /* Allow clicking through the container */
+}
+
+.right-side-panel.active .panel-nav {
+  opacity: 1;
+  visibility: visible;
+}
+
+.panel-nav button {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #888;
+  cursor: pointer;
+  padding: 20px;
+  pointer-events: auto; /* Re-enable clicking for buttons */
+  transition: color 0.3s ease;
+}
+
+.panel-nav button:hover {
+  color: #000;
+}
+
+.nav-prev {
+  left: auto; /* Remove the left positioning */
+  right: calc(65% - 60px); /* Position relative to right panel's left edge */
+}
+
+.nav-next {
+  right: 20px;
+}
+
+.panel-content {
+  padding-top: 20px; /* Reduced from 50px */
+}
+
+.modal-overlay {
+  display: none; /* Changed to display: none since we don't need it anymore */
+}
+
+body.panel-open {
+  overflow: hidden;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  margin-top: 20px;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.panel-inner {
+  padding: 20px 30px; /* Changed from just 30px to be more specific with vertical/horizontal padding */
+}
+
+.panel-inner h2 {
+  margin-bottom: 20px;
+}
+
+.panel-inner p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.cmr-logo {
+    width: 25px;
+    height: 25px;
+    filter: grayscale(100%) contrast(1000%); /* Increased contrast for starker black/white */
+    opacity: 0.5;
+    vertical-align: middle;
+    margin-top: -8px; /* Added this line to move it up */
+    transition: opacity .2s ease, opacity 0.2s ease;
+    text-decoration: none; /* Added this line */
+}
+
+/* Add hover effect to match other icons */
+a:hover .cmr-logo {
+    filter: brightness(0) invert(0.7) sepia(1) saturate(5) hue-rotate(100deg); /* Creates teal color on hover */
+    opacity: 0.8;
+}
+
+/* Add this new rule to target the link containing the logo */
+a:has(.cmr-logo) {
+    text-decoration: none;
+    border: none;
+}
+
+/* Medium - when screen width is 980px or less */
+@media screen and (max-width: 980px) {
+    .site-wrapper {
+        flex-direction: column;
+    }
+
+    #header {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 6em 4em;
+        text-align: center;
+    }
+
+    #main {
+        margin-left: 0;
+        width: 100%;
+        padding: 6em 4em;
+    }
+
+    .right-side-panel {
+        width: 100%;
+        right: -100%;
+    }
+
+    .right-side-panel.active {
+        right: 0;
+    }
+
+    .nav-prev {
+        right: calc(100% - 60px);
+    }
+
+    .modal-overlay {
+        width: 100%;
+    }
+}
+
+/* Small - when screen width is 736px or less */
+@media screen and (max-width: 736px) {
+    #header {
+        padding: 2.25em 1.5em;
+    }
+
+    #main {
+        padding: 2.25em 1.5em;
+    }
+
+    .right-side-panel {
+        padding: 2.25em 2.5em; /* Increased from 1.5em to 2.5em */
+    }
+
+    .panel-inner {
+        padding: 20px; /* Slightly reduced for mobile but still maintaining good spacing */
+    }
+}

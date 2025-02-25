@@ -78,115 +78,42 @@ $(document).ready(function () {
         once: true,
         disable: 'mobile'
     });
-    
+
     //  isotope
-    // $('#projects').waitForImages(function () {
-    //     var $container = $('.portfolio_container');
-    //     $container.isotope({
-    //         filter: '*',
-    //     });
-
-    //     $('.portfolio_filter a').click(function () {
-    //         $('.portfolio_filter .active').removeClass('active');
-    //         $(this).addClass('active');
-
-    //         var selector = $(this).attr('data-filter');
-    //         $container.isotope({
-    //             filter: selector,
-    //             animationOptions: {
-    //                 duration: 500,
-    //                 animationEngine: "jquery"
-    //             }
-    //         });
-    //         return false;
-    //     });
-
-    // });
-
-    // Initialize animatedModal
-    function initializeAnimatedModal() {
-        $("#demo01").animatedModal({
-            modalTarget: "animatedModal",
-            animatedIn: "fadeIn",
-            animatedOut: "fadeOut",
-            animationDuration: ".5s",
-            color: "#fff", // Set background color to white
-            beforeOpen: function() {
-                // Show the overlay
-                $(".modal-overlay").css({
-                    "display": "block"
-                });
-                // Ensure the modal content is styled correctly
-                $("#animatedModal .modal-content").css({
-                    "background-color": "#fff",
-                    "padding": "20px",
-                    "border-radius": "5px"
-                });
-                // Position the close button at the top right
-                $(".close-animatedModal").css({
-                    "position": "absolute",
-                    "top": "10px",
-                    "right": "10px",
-                    "cursor": "pointer"
-                });
-                // Prevent scrolling on the main page
-                $("html").css({
-                    "overflow": "hidden"
-                });
-            },
-            afterClose: function() {
-                // Scroll back to the top of the main page
-                $('html, body').animate({ scrollTop: 0 }, 'slow');
-                // Hide the modal properly
-                $("#animatedModal").css({
-                    "z-index": "-9999",
-                    "opacity": "0",
-                    "display": "none"
-                });
-                // Hide the overlay
-                $(".modal-overlay").css({
-                    "display": "none"
-                });
-                // Ensure body is scrollable
-                $("html").css({
-                    "overflow": "auto"
-                });
-                // Re-attach event listeners
-                attachEventListeners();
-            }
+    $('#projects').waitForImages(function () {
+        var $container = $('.portfolio_container');
+        $container.isotope({
+            filter: '*',
         });
-    }
 
-    // Attach event listeners
-    function attachEventListeners() {
-        $(".close-animatedModal").off('click').on('click', function() {
-            $("#animatedModal").css({
-                "z-index": "-9999",
-                "opacity": "0",
-                "display": "none"
+        $('.portfolio_filter a').click(function () {
+            $('.portfolio_filter .active').removeClass('active');
+            $(this).addClass('active');
+
+            var selector = $(this).attr('data-filter');
+            $container.isotope({
+                filter: selector,
+                animationOptions: {
+                    duration: 500,
+                    animationEngine: "jquery"
+                }
             });
-            $(".modal-overlay").css({
-                "display": "none"
-            });
-            $("html").css({
-                "overflow": "auto"
-            });
-            $('html, body').animate({ scrollTop: 0 }, 'slow');
-            // Re-enable button functionality
-            $("#demo01").off('click').on('click', function() {
-                $("#demo01").animatedModal('open');
-            });
+            return false;
         });
-    }
 
-    // Initialize modal and attach event listeners
-    initializeAnimatedModal();
-    attachEventListeners();
+    });
+
+    //animatedModal
+    $("#demo01").animatedModal({
+        modalTarget: "animatedModal",
+        animatedIn: "fadeIn",
+        animatedOut: "fadeOut",
+        animationDuration: ".5s"
+    });
 
     // Contact Form 	
 
     // validate contact form
-    /*
     $(function () {
         $('#contact-form').validate({
             rules: {
@@ -240,6 +167,37 @@ $(document).ready(function () {
         });
 
     });
-    */
 
+    var currentIndex = 0;
+    var items = $('.work-item');
+    var totalItems = items.length;
+
+    function showContent(index) {
+        var item = items.eq(index);
+        var content = '<h3>' + item.find('h3').text() + '</h3>' +
+                      '<p>' + item.find('p').text() + '</p>' +
+                      '<img src="' + item.find('a').attr('href') + '" alt="" />';
+        $('#right-side-content .content').html(content);
+        $('#right-side-content').fadeIn();
+    }
+
+    $('.work-item a').on('click', function(e) {
+        e.preventDefault();
+        currentIndex = $(this).closest('.work-item').index();
+        showContent(currentIndex);
+    });
+
+    $('.right-side-content .close-button').on('click', function() {
+        $('#right-side-content').fadeOut();
+    });
+
+    $('.right-side-content .nav-next').on('click', function() {
+        currentIndex = (currentIndex + 1) % totalItems;
+        showContent(currentIndex);
+    });
+
+    $('.right-side-content .nav-previous').on('click', function() {
+        currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+        showContent(currentIndex);
+    });
 });

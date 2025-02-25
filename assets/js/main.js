@@ -95,23 +95,18 @@
 
 	// Main Sections: Two.
 
-		// Lightbox gallery.
+		// Right side content container.
 			$window.on('load', function() {
+				$('#two').each(function() {
+					var $this = $(this),
+						$rightContent = $this.find('.right-content');
 
-				$('#two').poptrox({
-					caption: function($a) { return $a.next('h3').text(); },
-					overlayColor: '#2c2c2c',
-					overlayOpacity: 0.85,
-					popupCloserText: '',
-					popupLoaderText: '',
-					selector: '.work-item a.image',
-					usePopupCaption: true,
-					usePopupDefaultStyling: false,
-					usePopupEasyClose: false,
-					usePopupNav: true,
-					windowMargin: (breakpoints.active('<=small') ? 0 : 50)
+					$rightContent.css({
+						'background-color': '#f0f0f0',
+						'padding': '20px',
+						'border-radius': '8px'
+					});
 				});
-
 			});
 
 })(jQuery);

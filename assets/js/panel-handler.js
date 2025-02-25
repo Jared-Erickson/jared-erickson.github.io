@@ -56,9 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     The resulting design was a single-piece geometry grown from carbon nanotubes that was designed
                     from start to finish in under four months. My work involved: </p>
                     <li>Conducting a designed experiment to identify improvements in manufacturing
-                    parameters for the compliant micro-mechanism dart blaster</li>
+                    parameters for the compliant micro-mechanism dart blaster.</li>
                     <li>Operating a photolithography mask aligner, thermal evaporator, an e-beam evaporator,
-                    and a carbon nanotube furnace to produce carbon nanotube growth samples</p>
+                    and a carbon nanotube furnace to produce carbon nanotube growth samples.</p>
 
                     <p>The project was featured in a video on Mark Rober's YouTube channel:</p>
                     <div class="video-container">
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <li>Characterized multiple adhesives under conditions of elevated temperature and
                         pressure to identify solutions for foil delamination in a medical product.</li>
                         <li>Injection molded and machined proposed changes to product architecture and tested
-                        those changes to measure their impact on product performance</li>
+                        those changes to measure their impact on product performance.</li>
                     </ul>
                     <img src="images/HP Corvallis 2.jpg" style="width: 100%; margin: 20px 0;">
                 </div>

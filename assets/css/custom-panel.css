@@ -19,13 +19,13 @@
 .right-side-panel {
   position: fixed;
   top: 0;
-  right: -65%;
-  width: 65%;
+  right: -100%;
+  width: 100%;
   height: 100vh;
   background: #fff;
   overflow-y: auto;
   z-index: 1000;
-  padding: 2em 8em; /* Increased from 4em to 5em */
+  padding: 2em 20em; /* Updated padding to be simpler */
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -93,7 +93,7 @@
 
 .nav-prev {
   left: auto; /* Remove the left positioning */
-  right: calc(65% - 60px); /* Position relative to right panel's left edge */
+  right: calc(100% - 60px); /* Position relative to right panel's left edge */
 }
 
 .nav-next {

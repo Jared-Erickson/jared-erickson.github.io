@@ -4,6 +4,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const articles = document.querySelectorAll('#two .work-item');
     let currentIndex = 0;
 
+    // Add these new variables at the top
+    let scrollPosition = 0;
+    const html = document.documentElement;
+    
+    // Calculate scrollbar width once
+    const scrollBarWidth = window.innerWidth - html.clientWidth;
+    html.style.setProperty('--scrollbar-width', `${scrollBarWidth}px`);
+
     // Content mapping for all projects
     const projectContent = {
         'BYU_CMR': {
@@ -158,10 +166,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const articleId = article.querySelector('a').id;
         const content = projectContent[articleId].content;
         
+        // Store current scroll position
+        scrollPosition = window.scrollY;
+        
         document.querySelector('.panel-content').innerHTML = content;
         panel.classList.add('active');
         overlay.style.display = 'block';
         document.body.classList.add('panel-open');
+        document.body.style.top = `-${scrollPosition}px`;
 
         if (!isNavigation) {
             history.pushState({ panelOpen: true, articleId: articleId }, '', `#${articleId}`);
@@ -174,8 +186,11 @@ document.addEventListener('DOMContentLoaded', function() {
         panel.classList.remove('active');
         overlay.style.display = 'none';
         document.body.classList.remove('panel-open');
+        
+        // Restore scroll position
+        document.body.style.top = '';
+        window.scrollTo(0, scrollPosition);
 
-        // Add history entry for closed state
         history.pushState({ panelOpen: false }, '', window.location.pathname);
     }
 
@@ -232,5 +247,37 @@ document.addEventListener('DOMContentLoaded', function() {
         item.addEventListener('click', () => {
             currentItemIndex = index;
         });
+    });
+
+    // Update the keyboard event listener to handle vertical scrolling
+    document.addEventListener('keydown', (e) => {
+        // Only handle keyboard navigation when panel is open
+        if (document.body.classList.contains('panel-open')) {
+            const panelContent = document.querySelector('.right-side-panel');
+            const scrollAmount = 100; // px to scroll per key press
+            
+            switch(e.key) {
+                case 'ArrowRight':
+                    navigatePanel('next');
+                    break;
+                case 'ArrowLeft':
+                    navigatePanel('prev');
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault(); // Prevent default page scrolling
+                    panelContent.scrollBy({
+                        top: -scrollAmount,
+                        behavior: 'smooth'
+                    });
+                    break;
+                case 'ArrowDown':
+                    e.preventDefault(); // Prevent default page scrolling
+                    panelContent.scrollBy({
+                        top: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                    break;
+            }
+        }
     });
 });

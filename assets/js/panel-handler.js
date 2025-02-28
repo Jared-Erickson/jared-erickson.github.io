@@ -128,6 +128,26 @@ document.addEventListener('DOMContentLoaded', function() {
                         <li>Calibrated imaging hardware daily, built experimental setups, and interpreted
                         data to provide accurate data acquisition.</li>
                     </ul>
+
+                    <div class="gif-container" style="display: flex; flex-direction: column; gap: 20px; margin: 20px 0; align-items: center;">
+                        <figure style="margin: 0; text-align: center; width: 100%;">
+                            <img src="images/Single.gif" style="width: 90%; display: block; margin: 0 auto;">
+                            <figcaption style="text-align: center; margin-top: -20px;">Single propeller wake visualization showing vortex formation</figcaption>
+                        </figure>
+                        <figure style="margin: 0; text-align: center; width: 100%;">
+                            <img src="images/Dual_InPhase.gif" style="width: 90%; display: block; margin: 0 auto;">
+                            <figcaption style="text-align: center; margin-top: -20px;">Dual propeller interaction with blades rotating in phase</figcaption>
+                        </figure>
+                        <figure style="margin: 0; text-align: center; width: 100%;">
+                            <img src="images/Dual_OutOfPhase.gif" style="width: 90%; display: block; margin: 0 auto;">
+                            <figcaption style="text-align: center; margin-top: -20px;">Dual propeller interaction with blades rotating out of phase</figcaption>
+                        </figure>
+                    </div>
+                    
+                    <p>The GIFs above illustrate the data we collected using particle image velocimetry, demonstrating
+                    the complex flow patterns and vortex formations in propeller wake interactions. This research
+                    contributes to our understanding of multi-rotor aircraft aerodynamics like eVTOL and will potentially 
+                    optimize drone designs for better efficiency.</p>
                 </div>
             `
         }
